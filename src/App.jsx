@@ -1,9 +1,28 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './index.css'
+import { NewTodoForm } from './NewTodoForm'
+import { TodoList } from './TodoList'
 
 export default function App() {
-  const [newItem, setNewItem] = useState("")
-  const [todos, setTodos] = useState([])
+  // const [newItem, setNewItem] = useState("")
+  const [todos, setTodos] = useState( () => {
+    const localValue = localStorage.getItem("ITEMS")
+    if ( localValue == null ) return []
+    return JSON.parse(localValue)
+  })
+
+  useEffect( () => {
+    localStorage.setItem("ITEMS", JSON.stringify(todos))
+  }, [todos]) 
+
+  function addTodo(title) {
+    setTodos( currentTodos => {
+        return [
+            ...currentTodos, 
+            { id: crypto.randomUUID(), title, completed: false },
+        ]
+    })
+  }
 
   function handleSubmit(e) {
     e.preventDefault()
@@ -37,7 +56,7 @@ export default function App() {
 
   return (
   <>
-    <form className="new-item-form" onSubmit={handleSubmit}>
+    {/* <form className="new-item-form" onSubmit={handleSubmit}>
       <div className='form-row'>
         <label htmlFor="item">New Item</label>
         <input 
@@ -47,9 +66,13 @@ export default function App() {
           id="item" />
       </div>
       <button className='btn'>Add</button>
-    </form>
+    </form> */}
+    <NewTodoForm onSubmit={addTodo}/>
+    
     <h1 className="header">Todo List</h1>
-    <ul className="list">
+
+    <TodoList todos={todos} toggleTodo={toggleTodo} deleteTodo={deleteTodo}/>
+    {/* <ul className="list">
       { todos.length === 0 && "No items"}
       { todos.map( todo=> {
         return (
@@ -67,7 +90,7 @@ export default function App() {
           </li>
         )
       })}
-    </ul>
+    </ul> */}
   </>
   )
 }

@@ -1,22 +1,27 @@
 import { useState } from 'react'
 
-export function NewTodoForm() {
+export function NewTodoForm(props) {
+    props.onSubmit
     const [newItem, setNewItem] = useState("")
 
     function handleSubmit(e) {
         e.preventDefault()
 
-        setTodos( currentTodos => {
-            return [
-                ...currentTodos, 
-                { id: crypto.randomUUID(), title: newItem, completed: false },
-            ]
-        })
+        if (newItem === "" ) return
+
+        props.onSubmit(newItem)
+        // setTodos( currentTodos => {
+        //     return [
+        //         ...currentTodos, 
+        //         { id: crypto.randomUUID(), title: newItem, completed: false },
+        //     ]
+        // })
 
         setNewItem("")
     }
 
-    <form className="new-item-form" onSubmit={handleSubmit}>
+    return (
+        <form className="new-item-form" onSubmit={handleSubmit}>
       <div className='form-row'>
         <label htmlFor="item">New Item</label>
         <input 
@@ -27,4 +32,5 @@ export function NewTodoForm() {
       </div>
       <button className='btn'>Add</button>
     </form>
+    )
 }
