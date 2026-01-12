@@ -1,6 +1,7 @@
 body {
     display: flex;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background: lightgray;
 
     ul {
         list-style-type: none;
@@ -9,28 +10,43 @@ body {
 
         li {
             display: grid;
-            grid-template-columns: 3fr 1fr;            
+            grid-template-columns: 3fr 1fr;
             padding: 0.5rem 0;
             /* border: dotted green 1px; */
         }
     }
 
     form {
+
         /* border: dotted red 1px; */
-        label { display: block; }
-        input { width: 100%;}
+        label {
+            display: block;
+        }
+
+        input {
+            width: 100%;
+        }
+
+        button {
+            width: 100%;
+            padding: 0.5rem;
+            background-color: rgba(95, 158, 160, 0.845);
+            color: white;
+            border-radius: 0.5rem;
+            font-weight: 800;
+        }
     }
 }
 
 div {
     margin: 2rem auto;
-    border: solid lightgray 2px;
-    padding: 1rem;
+    border: solid darkblue 2px;
+    border-radius: 1.5rem;
+    padding: 2rem;
+    background: white;
 }
 
 .form-row {
     margin: 0;
     border: 0;
-
-    button { width: 100%;}
 }
