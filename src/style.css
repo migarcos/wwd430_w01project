@@ -1,0 +1,36 @@
+body {
+    display: flex;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+    ul {
+        list-style-type: none;
+        /* border: dotted red 1px; */
+        padding: 0;
+
+        li {
+            display: grid;
+            grid-template-columns: 3fr 1fr;            
+            padding: 0.5rem 0;
+            /* border: dotted green 1px; */
+        }
+    }
+
+    form {
+        /* border: dotted red 1px; */
+        label { display: block; }
+        input { width: 100%;}
+    }
+}
+
+div {
+    margin: 2rem auto;
+    border: solid lightgray 2px;
+    padding: 1rem;
+}
+
+.form-row {
+    margin: 0;
+    border: 0;
+
+    button { width: 100%;}
+}
